@@ -8,12 +8,21 @@ public class HelloWorldController : Controller
     [HttpGet("helloworld")]
     public IActionResult HelloWorld()
     {
-        return Ok("Hello World. If you see this result, the API is working!");
+        EndpointReturn endpointReturn = new EndpointReturn("", "", "");
+        endpointReturn.message = "Hello World. If you see this result, the API is working!";
+        
+        Console.WriteLine("This is a sample Console.log message.");
+        return Ok(endpointReturn.ToString());
     }
 
     [HttpPost("helloworld")]
     public IActionResult HelloWorldPost([FromBody] SamplePOSTModel model)
     {
-        return Ok($"Hello {model.sampleName}! If you see this result, the API is working!");
+        EndpointReturn endpointReturn = new EndpointReturn("", "", "");
+        endpointReturn.message = $"Hello {model.sampleName}! If you see this result, the API is working!";
+        endpointReturn.data = model.ToString();
+        
+        Console.WriteLine("Data: " + model.ToString());
+        return Ok(endpointReturn.ToString());
     }
 }
