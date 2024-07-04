@@ -6,5 +6,5 @@ builder.Services.AddControllers();
 var app = builder.Build();
 
 app.MapControllers();
-
+app.UseWebSockets();
 app.Run();
