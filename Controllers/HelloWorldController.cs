@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using database_trade_study.Models;
 
@@ -10,7 +9,7 @@ public class HelloWorldController : Controller
     {
         EndpointReturn endpointReturn = new EndpointReturn("", "", "");
         endpointReturn.message = "Hello World. If you see this result, the API is working!";
-        
+
         Console.WriteLine("This is a sample Console.log message.");
         return Ok(endpointReturn.ToString());
     }
@@ -21,7 +20,7 @@ public class HelloWorldController : Controller
         EndpointReturn endpointReturn = new EndpointReturn("", "", "");
         endpointReturn.message = $"Hello {model.sampleName}! If you see this result, the API is working!";
         endpointReturn.data = model.ToString();
-        
+
         Console.WriteLine("Data: " + model.ToString());
         return Ok(endpointReturn.ToString());
     }
