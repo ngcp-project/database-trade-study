@@ -49,3 +49,6 @@ The mock application will simulate telemetry data without having to go through t
     b. Install the test client's dependencies with `npm run install` or cd into the `test-client` directory and run `[package manager] install`
 
     c. Run the test client with `npm run client`
+
+## Final Result
+![image](https://github.com/ngcp-project/database-trade-study/assets/34526187/357171fe-2d38-433b-88a4-7730b69ca78b)
