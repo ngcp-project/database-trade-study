@@ -1,0 +1,10 @@
+{
+    "name": "test-client",
+    "version": "0.1.0",
+    "scripts": {
+      "install": "cd test-client && npm install",
+      "client": "cd test-client && node client.js",
+      "bun-client": "cd test-client && bun client.js"
+    }
+  }
+  
