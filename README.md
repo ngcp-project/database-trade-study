@@ -8,10 +8,10 @@ Last year, we used a database provider called Redis. Redis uses a key-value data
 
 ## Database Candidates
 
-1. Influx DB (SQL supporting database but niche)
+1. Influx DB (SQL supporting database but niche) -- Paul
 2. Local version of MongoDB (document-based database)
 3. Cassandra (Discord previously used it)
-4. PostgreSQL (SQL supported)
+4. PostgreSQL (SQL supported) -- Michael Wu
 
 ## Mock Application
 
