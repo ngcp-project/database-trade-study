@@ -1,54 +1,20 @@
-# Database Trade Study
-Comparison of different database providers
+# Thoughts
 
 
-## Context
+## average response time: 
+**~3.5 ms**
 
-Last year, we used a database provider called Redis. Redis uses a key-value data structure to store information. However, Redis is transitioning away from being open source software, so we need to look into alternatives.
+![result](postgres-result.png)
 
-## Database Candidates
+## Experience
+Installation and setup wasn't too bad since the process is pretty straightforward, just download and follow the steps. PgAdmin is the development platform which is also straightforward to download. There's also a vscode extension for postgresql (idk if this is required for it to work but I used it) and it displays the data and stuff but PgAdmin has more features. Figuring it out at first was a bit rough since I was kinda lost on where to start but there's a lot of videos/forums/docs so I was able to figure it out in a couple days. A lot of videos use visual studio instead of vscode but they're similar enough so that they're still helpful. Also postgres doesn't have datetime data type (what I originally thought of using) but they do have time with timezone and abunch of other alternatives which are pretty similar. In the end though, I just went with bigInteger to store unix timestamp.
 
-1. Influx DB (SQL supporting database but niche) -- Paul
-2. Local version of MongoDB (document-based database)
-3. Cassandra (Discord previously used it)
-4. PostgreSQL (SQL supported) -- Michael Wu
+# Installation/Extra steps:
+postgres download (I used version 16): https://www.postgresql.org/download/
 
-## Mock Application
+pgadmin download: https://www.pgadmin.org/download/
 
-The mock application will simulate telemetry data without having to go through the actual hassle of connecting to a simulated vehicle. In last year’s iteration, we were required to receive information at one update per second sent through a web socket. Think of this mock application as a chat application except that there’s a script that sends a user message every second.
+install packages using these:
 
-## Factors to Consider
-
-- Development Speed
-- LARGE WEIGHT: Read/write speed
-    - Must be able to handle AT LEAST 1 update per second (1 Hertz)
-- General advantages / disadvantages
-
-
-## Installation Instructions
-1. Clone the repository
-2. Install language support
-- [.NET](https://dotnet.microsoft.com/en-us/download)
-    - **NOTE:** Everyone must install the same version of .NET (blame Microsoft)
-    - Use .NET SDK 8.0.302 [direct installation link if needed](https://download.visualstudio.microsoft.com/download/pr/b6f19ef3-52ca-40b1-b78b-0712d3c8bf4d/426bd0d376479d551ce4d5ac0ecf63a5/dotnet-sdk-8.0.302-win-x64.exe)
-- [Node.js](https://nodejs.org/en/download/)
-    - Optional: The test client's dependencies can be installed with whatever package manager you want (npm, bun, etc.). You will have to configure the `package.json` script to run the client based on your package manager.
-    - Version doesn't matter. Long-term support (LTS) is recommended.
-3. Initialize & Run Database Server
-    
-    a. Ctrl + Shift + P (or Cmd + Shift + P) to open up the command palette in VS Code
-    
-    b. Type "Tasks: Run Task" and press Enter
-    
-    c. Select "Run Database Server" and press Enter
-
-4. Initialize & Run Test Client
-    
-    a. Open up a new terminal window
-
-    b. Install the test client's dependencies with `npm run install` or cd into the `test-client` directory and run `[package manager] install`
-
-    c. Run the test client with `npm run client`
-
-## Final Result
-![image](https://github.com/ngcp-project/database-trade-study/assets/34526187/357171fe-2d38-433b-88a4-7730b69ca78b)
+1. `dotnet add package Microsoft.EntityFrameworkCore`
+2. `dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL`
