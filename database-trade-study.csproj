@@ -7,4 +7,9 @@
     <RootNamespace>database_trade_study</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Coravel" Version="5.0.4" />
+    <PackageReference Include="InfluxDB.Client" Version="4.16.0" />
+  </ItemGroup>
+
 </Project>
