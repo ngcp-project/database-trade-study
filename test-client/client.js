@@ -13,6 +13,19 @@ webSocket.on("message", function message(data) {
     console.log("received: %s", data);
 });
 
+webSocket.on("open", () => {
+    setInterval(() => {
+        sampleData.firesDestroyed++;
+        const startTime = performance.now();
+        webSocket.send(JSON.stringify(sampleData));
+        webSocket.once("message", (response) => {
+            const endTime = performance.now();
+            const elapsedTime = endTime - startTime;
+            console.log(`Received time ${elapsedTime}`);
+        });
+    });
+});
+
 let sampleData = {
     vehicleName: "FRA",
     firesDestroyed: 0,

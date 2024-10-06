@@ -1,13 +1,24 @@
+using System.Diagnostics;
 using System.Net.WebSockets;
 using System.Text;
 using System.Text.Json;
 using database_trade_study.Models;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
-namespace WebSocketsSample.Controllers;
 
+namespace WebSocketsSample.Controllers{
 public class WebSocketController : ControllerBase
 {
+    private readonly IMongoCollection<MockData> _mockDataCollection;
+
+    public WebSocketController(IMongoClient mongoClient)
+    {
+        var database = mongoClient.GetDatabase("mongo"); // Change to your database name
+        _mockDataCollection = database.GetCollection<MockData>("mock"); // Change to your collection name
+    }
+
     [HttpGet("/socket")]
     public async Task InitializeWebSocket()
     {
@@ -22,7 +33,7 @@ public class WebSocketController : ControllerBase
         }
     }
 
-    private static async Task Echo(WebSocket webSocket)
+    private  async Task Echo(WebSocket webSocket)
     {
         var buffer = new byte[1024 * 4];
         var receiveResult = await webSocket.ReceiveAsync(
@@ -34,11 +45,12 @@ public class WebSocketController : ControllerBase
                 new ArraySegment<byte>(buffer), CancellationToken.None);
             
             string rawData = Encoding.UTF8.GetString(buffer).TrimEnd('\0');
-            
+            Console.WriteLine($"Received:{rawData}");
             MockData data = new MockData("N/A", 0);
             try
             {
                 data = JsonSerializer.Deserialize<MockData>(rawData) ?? new MockData("N/A", 0);
+                await SavetoDatabase(data);
             }
             catch (Exception e)
             {
@@ -59,5 +71,17 @@ public class WebSocketController : ControllerBase
             receiveResult.CloseStatus.Value,
             receiveResult.CloseStatusDescription,
             CancellationToken.None);
+
+
+
     }
+        public async Task SavetoDatabase(MockData data){
+        var stopwatch = Stopwatch.StartNew();
+        await _mockDataCollection.InsertOneAsync(data);
+        stopwatch.Stop();
+        Console.Write($"Data saved in mongodb {stopwatch.ElapsedMilliseconds}\n");
+    }
+
+    
+}
 }

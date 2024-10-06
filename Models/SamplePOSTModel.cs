@@ -9,5 +9,7 @@ namespace database_trade_study.Models
         {
             return JsonSerializer.Serialize(this);
         }
+
+        
     }
 }

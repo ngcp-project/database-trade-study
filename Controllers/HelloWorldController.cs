@@ -24,4 +24,6 @@ public class HelloWorldController : Controller
         Console.WriteLine("Data: " + model.ToString());
         return Ok(endpointReturn.ToString());
     }
+
+    
 }
