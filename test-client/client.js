@@ -41,7 +41,7 @@ let requestCount = 0;
 
 function runSim(sampleData) {
     setInterval(() => {
-        sampleData.id++;
+        sampleData.id += 3;
         sampleData.firesDestroyed++;
         sampleData.timestamp = new Date().getTime();
         webSocket.send(JSON.stringify(sampleData));
