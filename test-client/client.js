@@ -3,7 +3,7 @@ import axios from "axios";
 
 const CONNECTION_URL = "ws://localhost:5156/socket";
 const ENDPOINT = "http://localhost:5156";
-const HERTZ = 1;
+const HERTZ = 10;
 // HERTZ is the "formal" unit that represents updates per second.
 // 1 HERTZ = 1 update per second
 
@@ -22,26 +22,26 @@ let sampleData1 = {
     timestamp: new Date().getTime(),
 };
 
-let sampleData2 = {
-    id: 2,
-    vehicleName: "AWAWA",
-    firesDestroyed: 0,
-    timestamp: new Date().getTime(),
-};
+// let sampleData2 = {
+//     id: 2,
+//     vehicleName: "AWAWA",
+//     firesDestroyed: 0,
+//     timestamp: new Date().getTime(),
+// };
 
-let sampleData3 = {
-    id: 3,
-    vehicleName: "WOOP DE DOO",
-    firesDestroyed: 0,
-    timestamp: new Date().getTime(),
-};
+// let sampleData3 = {
+//     id: 3,
+//     vehicleName: "WOOP DE DOO",
+//     firesDestroyed: 0,
+//     timestamp: new Date().getTime(),
+// };
 
 let totalResponseTime = 0;
 let requestCount = 0;
 
 function runSim(sampleData) {
     setInterval(() => {
-        sampleData.id += 3;
+        sampleData.id += 1;
         sampleData.firesDestroyed++;
         sampleData.timestamp = new Date().getTime();
         webSocket.send(JSON.stringify(sampleData));
@@ -71,5 +71,3 @@ function runSim(sampleData) {
 }
 
 runSim(sampleData1);
-runSim(sampleData2);
-runSim(sampleData3);
