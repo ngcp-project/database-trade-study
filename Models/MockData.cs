@@ -1,5 +1,6 @@
 using System.Security.Cryptography;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace database_trade_study.Models
 {
@@ -17,6 +18,7 @@ namespace database_trade_study.Models
             this.firesDestroyed = firesDestroyed;
         }
 
+        [JsonConstructor]
         public MockData(string vehicleName, int firesDestroyed)
         {
             id = RandomNumberGenerator.GetInt32(int.MaxValue);

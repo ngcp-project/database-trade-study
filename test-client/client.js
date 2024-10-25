@@ -1,7 +1,7 @@
 import WebSocket from "ws";
 
 const CONNECTION_URL = "ws://localhost:5156/socket";
-const HERTZ = 1;
+const HERTZ = 10;
 // HERTZ is the "formal" unit that represents updates per second.
 // 1 HERTZ = 1 update per second
 
