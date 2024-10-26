@@ -23,3 +23,10 @@ install packages using these:
 
 1. `dotnet add package Microsoft.EntityFrameworkCore`
 2. `dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL`
+
+# Other Stuff
+So I never wrote any actual SQL. According to this, I use context to actually interact with the database. 
+
+https://www.npgsql.org/efcore/?tabs=onconfiguring
+
+npsql is "the open source EF Core provider for PostgreSQL. It allows you to interact with PostgreSQL via the most widely-used . NET O/RM from Microsoft, and use familiar LINQ syntax to express queries."
